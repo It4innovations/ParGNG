@@ -22,7 +22,7 @@ After successfull compilation the `run` directory should contain one executable 
 
 ## Usage
 
-mpirun -n 20 gng_linux -c <file> -o <file> -i <input>
+mpirun -n 20 gng_linux -c < file > -o < file > -i < input >
 
 **List of basic parameters:**
 ```
