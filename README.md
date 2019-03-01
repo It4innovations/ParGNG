@@ -18,7 +18,7 @@ The code has been developed and optimized for the [IT4Innovations Salomon cluste
 1. Clone the repository
 2. Run make
 
-After successfull compilation the `runGNG` directory should contain one executable 'gng_linux'.
+After successfull compilation the `run` directory should contain one executable 'gng_linux'.
 
 ## Usage
 
@@ -30,20 +30,30 @@ mpirun -n 20 gng_linux -c <file> -o <file> -i <input>
 -o <name> - name of output file
 -i <name> - name of input file
 -debug    - enable debug reports (Default false)
--info     - continuously writes status of calculation (Default false)
--t <number>      - number of thread (Default 1)
--TC              - Enabled hybrid learning (Default false) 
--somHybrid <range 0 - 100> 
--hybridInc        
--hybridDec        
--hybridStep <number>
--cosin           - Use cosine similarity instead of euclidean distance (Default false)
--version <number> - Version type of input file (Default 2)
--update <number>  - Version of update (Default 0)
--onOutput - Turn off any output file (Default false)
+-showInput -convert input to GDF file
+-withSom  - combine GNG and SOM
+-s        - Change size for GDF
 ```
 
-**Input file example**
+**Input configuration file example**
+```
+Number or records
+Number of dimension
+Name of data file
+Output newtork configuration file
+Output network data file
+Number of parts
+```
+```
+800
+2
+TwoDiamonds-sparseFormat.txt
+diamanty1.all
+diamanty1-1.parts
+9
+```
+
+**Input data file example**
 
 Each record is on a separate line. 
 
@@ -56,14 +66,43 @@ Each record is on a separate line.
 ```
 
 **Configuration file example**
+Each record is on a separate line.
 
-`<x dimension>  <y dimension> <number of iteration> <number of input records> <default name of output files> <version>`
+```
+gama
+e_w 
+e_n 
+alpha
+beta
+a_max
+NeuronMaxCount
+MaxIteration
+```
+```
+200
+0.05
+0.006
+0.5
+0.0005
+300
+500
+200
+```
+**Outputs**
+Default format for output is Gephi files- gdf and gn
 
-**Output file example**
+```
+nodedef> name VARCHAR,label VARCHAR,width DOUBLE,height DOUBLE,x DOUBLE,y DOUBLE,color VARCHAR
+0,"n0",10.0,10.0,1971.48,1972.38,'153.153.153'
+1,"n1",10.0,10.0,1213.11,4955.56,'153.153.153'
+2,"n2",10.0,10.0,3776.39,4933.86,'153.153.153'
+3,"n3",10.0,10.0,2002.02,2499.59,'153.153.153'
+4,"n4",10.0,10.0,3479.01,2986.04,'153.153.153'
+5,"n5",10.0,10.0,3780.64,39.1175,'153.153.153'
+6,"n6",10.0,10.0,1219.22,48.9155,'153.153.153'
+7,"n7",10.0,10.0,992.712,3007.58,'153.153.153'
+```
 
-Each record describes one neuron.
-
-`0:<value> 1:<value> ... `
 
 # Licence
 
